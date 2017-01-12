@@ -1,0 +1,10 @@
+D:\budget\Budget\Budget.MODEl\bin\Debug\Budget.MODEl.dll
+D:\budget\Budget\Budget.MODEl\bin\Debug\Budget.MODEl.pdb
+D:\budget\Budget\Budget.MODEl\obj\Debug\Budget.MODEl.dll
+D:\budget\Budget\Budget.MODEl\obj\Debug\Budget.MODEl.pdb
+D:\budget\Budget\Budget.MODEl\obj\Debug\Budget.MODEl.csprojResolveAssemblyReference.cache
+F:\code\Budget\Budget.MODEl\bin\Debug\Budget.MODEl.dll
+F:\code\Budget\Budget.MODEl\bin\Debug\Budget.MODEl.pdb
+F:\code\Budget\Budget.MODEl\obj\Debug\Budget.MODEl.csprojResolveAssemblyReference.cache
+F:\code\Budget\Budget.MODEl\obj\Debug\Budget.MODEl.dll
+F:\code\Budget\Budget.MODEl\obj\Debug\Budget.MODEl.pdb

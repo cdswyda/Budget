@@ -1,0 +1,152 @@
+﻿<!doctype html>
+<html>
+<head>
+    <title>兰艺装饰--个性化你的家</title>
+    <link href="css/style.css" type="text/css" rel="stylesheet" media="all">
+    <link href="css/bootstrap.css" type="text/css" rel="stylesheet" media="all">
+    <!--<link rel="stylesheet" type="text/css" href="css/default.css" />-->
+    <link rel="stylesheet" type="text/css" href="css/component.css" />
+    <!--web-font-->
+    <!--<link href='http://fonts.useso.com/css?family=Raleway:400,100,200,300,500,600,700,800,900' rel='stylesheet' type='text/css'>-->
+    <link href="css/font-css.css" rel="stylesheet" />
+    <!--//web-font-->
+    <!-- Custom Theme files -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="keywords" content="Furnishing Responsive web template, Bootstrap Web Templates, Flat Web Templates, Andriod Compatible web template,
+		Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyErricsson, Motorola web design" />
+    <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+    <!--<script src="http://ajax.useso.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>-->
+    <script src="js/jquery-2.2.3.min.js"></script>
+    <!-- //Custom Theme files -->
+    <!-- js -->
+    <script src="js/jquery.min.js"></script>
+    <!-- //js -->
+    <!-- start-smoth-scrolling-->
+    <script type="text/javascript" src="js/move-top.js"></script>
+    <script type="text/javascript" src="js/easing.js"></script>
+    <script type="text/javascript" src="js/modernizr.custom.53451.js"></script>
+    <script type="text/javascript">
+        jQuery(document).ready(function ($) {
+            $(".scroll").click(function (event) {
+                event.preventDefault();
+                $('html,body').animate({ scrollTop: $(this.hash).offset().top }, 1000);
+            });
+        });
+    </script>
+    <!--//end-smoth-scrolling-->
+    <script src="js/easyResponsiveTabs.js" type="text/javascript"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#horizontalTab').easyResponsiveTabs({
+                type: 'default', //Types: default, vertical, accordion
+                width: 'auto', //auto or any width like 600px
+                fit: true   // 100% fit in a container
+            });
+        });
+    </script>
+</head>
+<body>
+    <!--header-->
+    <div class="header">
+        <div class="social-icons">
+            <ul>
+                <li><a href="#"><span class="twt"> </span></a></li>
+                <li><a href="#"><span class="fb"> </span></a></li>
+                <li><a href="#"><span class="in"> </span></a></li>
+                <li><a href="#"><span class="dot"> </span></a></li>
+            </ul>
+        </div>
+        <div class="container">
+            <div class="col-md-9 top-nav">
+                <span class="menu"><img src="images/menu.png" alt="" /></span>
+                <ul class="nav1">
+                    <li><a href="index.html" class="active">HOME</a></li>
+                    <li><a href="login.html">LOGIN</a></li>
+                    <li><a href="about.html">ABOUT</a></li>
+
+                </ul>
+                <!-- script-for-menu -->
+                <script>
+                    $("span.menu").click(function () {
+                        $("ul.nav1").slideToggle(900, function () {
+                            // Animation complete.
+                        });
+                    });
+                </script>
+                <!-- /script-for-menu -->
+            </div>
+            <div class="col-md-3 header-logo">
+                <a href="index.html"><img src="images/logo-1.png" alt="logo" /></a>
+            </div>
+            <div class="clearfix"> </div>
+        </div>
+    </div>
+    <!--//header-->
+    <!--services-->
+    <div class="services">
+        <div class="container">
+            <h3>OUR SERVICES</h3>
+            <div class="services-grids">
+                <div class="col-md-4 services-grids-info">
+                    <span class="service-one"> </span>
+                    <h4>WEB DEVELOPMENT</h4>
+                    <p>
+                        Donec libero dui, scelerisque ac augue id, tristique ullamcorper elit. Nam ultrices, lacus vitae adipiscing aliquet,
+                        metus ipsum imperdiet libero, vitae dignissim sapien diam ac nibh convallis.
+                    </p>
+                </div>
+                <div class="col-md-4 services-grids-info">
+                    <span class="service-two active"> </span>
+                    <h4>QUALITY PHOTOGRAPHY</h4>
+                    <p>
+                        Donec libero dui, scelerisque ac augue id, tristique ullamcorper elit. Nam ultrices, lacus vitae adipiscing aliquet,
+                        metus ipsum imperdiet libero, vitae dignissim sapien diam ac nibh convallis.
+                    </p>
+                </div>
+                <div class="col-md-4 services-grids-info">
+                    <span class="service-three"> </span>
+                    <h4>RELIABLE SUPPORT</h4>
+                    <div class="clearfix"> </div>
+                    <p>
+                        Donec libero dui, scelerisque ac augue id, tristique ullamcorper elit. Nam ultrices, lacus vitae adipiscing aliquet,
+                        metus ipsum imperdiet libero, vitae dignissim sapien diam ac nibh convallis.
+                    </p>
+                </div>
+                <div class="clearfix"> </div>
+            </div>
+        </div>
+    </div>
+    <!--//services-->
+
+    <!--seemore-->
+    <div class="seemore">
+        <div class="seemore-text">
+            <h3>Donec libero</h3>
+            <p>Ut enim ad minim veniam quis nostrud.</p>
+            <a href="samplepage.html">see more</a>
+        </div>
+    </div>
+    <!--seemore-->
+ 
+   
+    <!--smooth-scrolling-of-move-up-->
+    <script type="text/javascript">
+        $(document).ready(function () {
+            /*
+            var defaults = {
+                containerID: 'toTop', // fading element id
+                containerHoverID: 'toTopHover', // fading element hover id
+                scrollSpeed: 1200,
+                easingType: 'linear'
+            };
+            */
+
+            $().UItoTop({ easingType: 'easeOutQuart' });
+
+        });
+    </script>
+    <a href="#" id="toTop" style="display: block;"> <span id="toTopHover" style="opacity: 1;"> </span></a>
+    <!--//smooth-scrolling-of-move-up-->
+</body>
+</html>

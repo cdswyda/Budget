@@ -1,0 +1,257 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+    <title>兰艺装饰--装修条目管理</title>
+    <script src="js/jquery-2.2.3.min.js"></script>
+    <script src="bootstrap/js/bootstrap.min.js"></script>
+    <link href="bootstrap/css/bootstrap.css" rel="stylesheet" />
+    <script src="js/boot.js"></script>
+
+    <style>
+        /*html, body {
+            width: 100%;
+            height: 100%;
+            border: 0;
+            margin: 0;
+            padding: 0;
+            overflow: visible;
+        }*/
+        .asLabel .mini-textbox-border,
+        .asLabel .mini-textbox-input {
+            border: 0;
+            background: none;
+            cursor: default;
+        }
+    </style>
+</head>
+<body>
+    <!--头部工具-->
+
+    <div style="width:100%;">
+        <div class="mini-toolbar" style="border-bottom:0;padding:0px; width:100%;">
+            <table style="width:100%;">
+                <tr>
+                    <td style="width:100%;">
+                        <a class="mini-button" iconcls="icon-add" onclick="addRow()" plain="true">增加</a>
+                        <a class="mini-button" iconcls="icon-remove" onclick="removeRow()" plain="true">删除</a>
+                        <span class="separator"></span>
+                        <a class="mini-button" iconcls="icon-save" onclick="saveData()" plain="true">保存</a>
+                    </td>
+                    <td style="white-space:nowrap;">
+
+                        <input id="key" class="mini-combobox" textfield="text" valuefield="id" style="width:80px;" onenter="onKeyEnter" onvaluechanged="search()" />
+                        <a class="mini-button" onclick="search()">切换房间</a>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+    <!--end-->
+    <!--数据部分-->
+
+    <div id="datagrid1" class="mini-datagrid" style="width:100%;height:500px;"
+         url="ashx/AjaxServer.aspx?method=GetItemsByRoomID" idfield="ItemID"
+         allowresize="true" pagesize="20"
+         allowcelledit="true" allowcellselect="true" multiselect="true"
+         allowcellvalid="true" oncellvalidation="onCellValidation" oncellendedit="onCellEndEdit">
+        <div property="columns">
+            <div type="checkcolumn"></div>
+
+            <div field="RoomID" headeralign="center" allowsort="true" visible="false">
+                房间编号
+            </div>
+
+            <div field="Name" vtype="required" width="100" minwidth="100" headeralign="center" allowsort="true">
+                项目名称
+                <input property="editor" class="mini-textbox" style="width:100%;" />
+            </div>
+
+            <div field="Units" vtype="required" width="50" minwidth="50" renderer="onUnitsRenderer" align="center" headeralign="center">
+                单位
+                <input property="editor" class="mini-combobox" style="width:100%;" url="data/Units.txt" />
+            </div>
+
+            <div field="Price" headeralign="center" align="right" numberformat="#,0.00" vtype="required;float" width="100" minwidth="100" >
+                单价
+                <input property="editor" class="mini-textbox" minvalue="0" maxvalue="50000" value="0" style="width:100%;" />
+            </div>
+
+            <div field="Quantity" headeralign="center" align="right" numberformat="#,0.00" vtype="required;float" width="80" minwidth="50" >
+                数量
+                <input property="editor" class="mini-textbox" minvalue="0.1" maxvalue="2000" value="0" style="width:100%;" />
+            </div>
+
+            <div field="Total" headeralign="center" align="right" vtype="required;float" width="120" minwidth="120" numberformat="¥ #,0.00">
+                合计
+                <input property="editor" class="mini-textbox" style="width:100%;" />
+            </div>
+
+            <div field="Note" headeralign="center" vtype="required" width="400px"  dateformat="yyyy-MM-dd">
+                材料工艺及说明
+                <input property="editor" class="mini-textbox" style="width:100%;" />
+            </div>
+
+
+        </div>
+    </div>
+
+    <!--end-->
+    <div>
+        此房间地面/屋顶面积：<input id="textbox1" name="username" class="mini-textbox asLabel" readonly="true" />
+        墙面面积：<input id="textbox2" name="username" class="mini-textbox asLabel" readonly="true" />
+    </div>
+    <script type="text/javascript">
+        //获取地址栏的参数
+        function GetQueryString(name) {
+            var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
+            var r = window.location.search.substr(1).match(reg);
+            if (r != null) return unescape(r[2]); return null;
+        }
+        //为房间切换下拉框加上属性
+        $("#key").attr({
+            "url": "ashx/AjaxServer.aspx?method=GetRoomsByRoomID&RoomID=" + GetQueryString("RoomID"),
+            "value": GetQueryString("RoomID")
+        });
+
+        mini.parse();
+
+        var grid = mini.get("datagrid1");
+        //第一次加载为链接过来的房间
+        grid.load({ key: GetQueryString("RoomID") });
+        //第一次直接加载传递过来房间的信息
+        mini.get("textbox1").setValue(getAreaByRoomID(GetQueryString("RoomID")).Area);
+        mini.get("textbox2").setValue(getAreaByRoomID(GetQueryString("RoomID")).WallArea);
+
+
+        function search() {
+
+            saveData();
+            var key = mini.get("key").getValue();
+            console.log("当前房间id：" + key);
+            grid.load({ key: key });
+            //更新此房间的数据
+            var roomArea = getAreaByRoomID(key);
+            console.log("此房间数据：" + roomArea.Area);
+            mini.get("textbox1").setValue(roomArea.Area);
+            mini.get("textbox2").setValue(roomArea.WallArea);
+        }
+        $("#key").bind("keydown", function (e) {
+            if (e.keyCode == 13) {
+                search();
+            }
+        });
+        ///////////////////////////////////////////////////////
+
+
+        var Units = [
+    { "id": "1", "text": "m" },
+    { "id": "2", "text": "㎡" },
+    { "id": "3", "text": "项" },
+    { "id": "4", "text": "块" },
+    { "id": "5", "text": "个" },
+    { "id": "6", "text": "扇" },
+	{ "id": "7", "text": "件" },
+	{ "id": "8", "text": "条" }
+        ];
+        function onUnitsRenderer(e) {
+            for (var i = 0, l = Units.length; i < l; i++) {
+                var g = Units[i];
+                if (g.id == e.value) return g.text;
+            }
+            return "";
+        }
+
+        function addRow() {
+            //新增行
+            var newRow = { name: "New Row", RoomID: mini.get("key").getValue() };
+            console.log("新行房间id：" + mini.get("key").getValue());
+            grid.addRow(newRow, 0);
+            grid.validateRow(newRow);   //加入新行，马上验证新行
+        }
+        function removeRow() {
+            var rows = grid.getSelecteds();
+            if (rows.length > 0) {
+                console.log(rows[0]);
+                grid.removeRows(rows, true);
+            }
+            //直接删除 否则在点击保存时完成所有修改
+            if (confirm("直接删除？选择‘确定’将直接删除，否则在点击保存时完成所有修改"))
+                saveData();
+        }
+
+        function saveData() {
+            grid.validate();
+            if (grid.isValid() == false) {
+                //alert("请校验输入单元格内容");
+                var error = grid.getCellErrors()[0];
+                grid.beginEditCell(error.record, error.column);
+                return;
+            }
+
+            var data = grid.getChanges();
+            var json = mini.encode(data);
+
+            grid.loading("保存中，请稍后......");
+            $.ajax({
+                url: "ashx/AjaxServer.aspx?method=SaveItems",
+                data: { data: json },
+                type: "post",
+                success: function (text) {
+                    grid.reload();
+                },
+                error: function (jqXHR, textStatus, errorThrown) {
+                    alert(jqXHR.responseText);
+                }
+            });
+        }
+
+        function onCellValidation(e) {
+            //if (e.field == "age") {
+
+            //    if (e.value < 20) {
+            //        e.isValid = false;
+            //        e.errorText = "年龄必须大于20岁";
+            //    }
+            //}
+
+        }
+
+        //自动计算合计
+        function onCellEndEdit(e) {
+            var row = e.row;
+            console.log(row);
+            row.Total = row.Price * row.Quantity;
+        }
+        //获取房间的地面和墙面面积
+        function getAreaByRoomID(roomID) {
+            var o;
+            $.ajax({
+                url: 'ashx/AjaxServer.aspx?method=getAreaByRoomID&RoomID=' + roomID,
+                async: false,
+                success: function (result) {
+                    if (result != null || result != "") {
+                        console.log("请求到的数据：" + result);
+                        o = jQuery.parseJSON(result);
+                        console.log("对象化后的结果：" + o.Area + "  " + o.WallArea);
+                    }
+                }
+            });
+            return o;
+        }
+
+
+
+        //
+        //$(".mini-grid-rows-content").addClass("table-responsive").children(".mini-grid-table mini-grid-rowstable").addClass("table table-bordered");
+    </script>
+
+
+
+
+
+
+
+</body>
+</html>

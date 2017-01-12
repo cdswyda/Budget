@@ -1,0 +1,46 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="Budget.BLL.HouseBll">
+    <Position X="3.5" Y="0.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAACAAAAAAAAABAAAAAAAA=</HashCode>
+      <FileName>HouseBll.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Budget.BLL.ItemsBll">
+    <Position X="0.75" Y="0.75" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AACAQAAQEAAAAAAAAQEAAAAAgAAAACAAAAAAAAAAAAA=</HashCode>
+      <FileName>ItemsBll.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Budget.BLL.JSON">
+    <Position X="5.5" Y="0.75" Width="2" />
+    <TypeIdentifier>
+      <HashCode>QAAAAAAAAABAAAAAAAAAAAAQAAAAAAAAAAAAQAAAAAA=</HashCode>
+      <FileName>JSON.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Budget.BLL.LoginBll" Collapsed="true">
+    <Position X="7.75" Y="0.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAAAAAA=</HashCode>
+      <FileName>LoginBll.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Budget.BLL.RoomsBll" Collapsed="true">
+    <Position X="7.75" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAACAAACAAAQAAAAAACAAAAAAAAAAAEA=</HashCode>
+      <FileName>RoomsBll.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Budget.BLL.UserBll" Collapsed="true">
+    <Position X="7.75" Y="2.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAACAAEAAQAAAAAAAACAAAAgAAAAAAAAAAA=</HashCode>
+      <FileName>UserBll.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Microsoft YaHei UI" Size="9" />
+</ClassDiagram>

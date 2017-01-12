@@ -1,0 +1,291 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title></title>
+    <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+    <script src="js/jquery-2.2.3.min.js"></script>
+    <script src="bootstrap/js/bootstrap.min.js"></script>
+</head>
+<body>
+
+                    <form class="form-horizontal" role="form">
+                        <div class="form-group has-feedback">
+                            <label for="name" class="col-sm-2 control-label">小区名称</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" id="name" placeholder="请输入小区名称">
+                                <span id="name-sp" class="glyphicon form-control-feedback"></span>
+                            </div>
+
+                        </div>
+
+                        <div class="form-group has-feedback">
+                            <label for="username" class="col-sm-2 control-label">业主姓名</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" id="username" placeholder="请输入业主姓名">
+                                <span id="username-sp" class="glyphicon form-control-feedback"></span>
+                            </div>
+                        </div>
+
+                        <div class="form-group has-feedback">
+                            <label for="phone" class="col-sm-2 control-label">业主电话</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" id="phone" placeholder="请输入业主电话">
+                                <span id="phone-sp" class="glyphicon form-control-feedback"></span>
+                            </div>
+                        </div>
+
+                        <div class="form-group has-feedback">
+                            <label for="address" class="col-sm-2 control-label">地址</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" id="address" placeholder="请输入详细地址">
+                                <span id="address-sp" class="glyphicon form-control-feedback"></span>
+                            </div>
+                        </div>
+
+                        <div class="form-group has-feedback">
+                            <label for="area" class="col-sm-2 control-label">面积</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" id="area" placeholder="请输入房屋面积">
+                                <span id="area-sp" class="glyphicon form-control-feedback"></span>
+                            </div>
+                        </div>
+
+                        <div class="form-group has-feedback">
+                            <label for="height" class="col-sm-2 control-label">高度</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" id="height" placeholder="请输入房屋高度">
+                                <span id="height-sp" class="glyphicon form-control-feedback"></span>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label"> </label>
+                            <div class="checkbox col-sm-10">
+                                <label class="checkbox"><input id="checkbox" type="checkbox" /> 我都填好了</label>
+                            </div>
+                        </div>
+
+
+                        <div class="col-sm-2"></div>
+
+                        <div class="col-sm-8 text-center">
+                            <button class="btn btn-primary" id="ok" type="submit" disabled="disabled">提交</button>
+
+                            <button class="btn btn-primary" id="cancel" type="reset">重置</button>
+                        </div>
+                        <div class="col-sm-2 text-right"></div>
+                        <br />
+                        <br />
+
+                    </form>
+
+
+
+
+
+
+
+    <div>
+    
+
+
+    </div>
+    <script>
+        //禁止直接访问此页
+        window.onload = function () {
+            //alert(GetQueryString("designer"));
+            //if (GetQueryString("designer") == null) {
+            //    if (confirm("必须是设计师登录才能开始设计喔"))
+            //        location.href = "index.html";
+            //    else
+            //        location.href = "index.html";
+            //}
+        }
+        //获取地址栏的参数
+        function GetQueryString(name) {
+            var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
+            var r = window.location.search.substr(1).match(reg);
+            if (r != null) return unescape(r[2]); return null;
+        }
+
+        //显示modal
+        $(function () {
+            $("#showmodal").click(function () {
+                $("#mymodal").modal("toggle");
+            });
+        });
+
+        //验证
+        var mes = "";
+        var ok1, ok2, ok3, ok4, ok5, ok6;
+        //小区名
+        $("#name").blur(function () {
+            //alert($("#name").val());
+            var mes1;
+            if ($("#name").val() == "") {
+                $("#name").parent().parent().addClass("has-error");
+                $("#name-sp").addClass("glyphicon-remove");
+                //$("#ok").attr("disabled", "disabled");
+                mes1 = "必须输入小区名称";
+                ok1 = false;
+                
+            } else {                
+                $("#name").parent().parent().removeClass("has-error").addClass("has-success");
+                $("#name-sp").removeClass("glyphicon-remove").addClass("glyphicon-ok");
+                //$("#ok").attr("disabled", "disabled");
+                mes1 = "";
+                ok1 = true;
+            }
+            //alert($("#name").val());
+            mes += mes1;
+        });
+        //业主名
+        $("#username").blur(function () {            
+            var mes1;
+            if ($("#username").val() == "") {
+                $("#username").parent().parent().addClass("has-error");
+                $("#username-sp").addClass("glyphicon-remove");                
+                mes1 = "必须输入业主姓名";
+                ok2 = false;
+
+            } else {
+                $("#username").parent().parent().removeClass("has-error").addClass("has-success");
+                $("#username-sp").removeClass("glyphicon-remove").addClass("glyphicon-ok");                
+                mes1 = "";
+                ok2 = true;
+            }           
+            mes += mes1;
+        });
+        //电话
+        $("#phone").blur(function () {
+            var mes1;
+            var reg = new RegExp("^[0-9]*$");
+            if ($("#phone").val() == "" || !reg.test($("#phone").val())) {
+                $("#phone").parent().parent().addClass("has-error");
+                $("#phone-sp").addClass("glyphicon-remove");
+                mes1 = "必须输入正确的业主电话";
+                ok3 = false;
+
+            } else {
+                $("#phone").parent().parent().removeClass("has-error").addClass("has-success");
+                $("#phone-sp").removeClass("glyphicon-remove").addClass("glyphicon-ok");
+                mes1 = "";
+                ok3 = true;
+            }
+            mes += mes1;
+        });
+        //地址
+        $("#address").blur(function () {
+            var mes1;            
+            if ($("#address").val() == "") {
+                $("#address").parent().parent().addClass("has-error");
+                $("#address-sp").addClass("glyphicon-remove");
+                mes1 = "必须输入地址";
+                ok4 = false;
+
+            } else {
+                $("#address").parent().parent().removeClass("has-error").addClass("has-success");
+                $("#address-sp").removeClass("glyphicon-remove").addClass("glyphicon-ok");
+                mes1 = "";
+                ok4 = true;
+            }
+            mes += mes1;
+        });
+        //面积
+        $("#area").blur(function () {
+            var mes1;
+            //alert($("#area").val());
+            var reg = /^([1-9]\d{0,5}|0)(\.\d{1,4})?$/;
+            //alert(reg.test($("#area").val()));
+            if ($("#area").val() == "" || !reg.test($("#area").val())) {
+                $("#area").parent().parent().addClass("has-error");
+                $("#area-sp").addClass("glyphicon-remove");
+                mes1 = "必须输入正确的面积";
+                ok5 = false;
+
+            } else {
+                $("#area").parent().parent().removeClass("has-error").addClass("has-success");
+                $("#area-sp").removeClass("glyphicon-remove").addClass("glyphicon-ok");
+                mes1 = "";
+                ok5 = true;
+            }
+            mes += mes1;
+        });
+        //高度
+        $("#height").blur(function () {
+            var mes1;
+            //alert($("#height").val());
+            var reg = /^([2-3])(\.\d{1,4})?$/;
+            //alert(reg.test($("#area").val()));
+            if ($("#height").val() == "" || !reg.test($("#height").val())) {
+                $("#height").parent().parent().addClass("has-error");
+                $("#height-sp").addClass("glyphicon-remove");
+                mes1 = "必须输入正确的高度 高于2米 但不超过4米";
+                ok6 = false;
+
+            } else {
+                $("#height").parent().parent().removeClass("has-error").addClass("has-success");
+                $("#height-sp").removeClass("glyphicon-remove").addClass("glyphicon-ok");
+                mes1 = "";
+                ok6 = true;
+            }
+            mes += mes1;
+        });
+        $("#checkbox").click(function () {
+            
+            //alert($("#checkbox").prop("checked"));
+            if ($("#checkbox").prop("checked") == true) {
+                if (ok1 && ok2 && ok3 & ok4 & ok5 & ok6) {
+                    $("#ok").removeAttr("disabled");                    
+                }
+            } 
+        });
+
+        //提交
+        $("#ok").click(function () {
+            //获取传递过来的设计师电话
+            var designer = GetQueryString("designer");
+            var name = $("#name").val();
+            var username = $("#username").val();
+            var phone = $("#phone").val();
+            var address = $("#address").val();
+            var area = $("#area").val();
+            var height = $("#height").val();
+            var postdata = {
+                "designer": designer,
+                "name": name,
+                "username": username,
+                "phone": phone,
+                "address": address,
+                "area": area,
+                "height": height
+            };
+
+            $.ajax({
+
+                url: "ashx/CreateHouse.aspx",
+                type: "POST",
+                data: postdata,
+                success: function (result) {
+
+                    if (result > 0) {
+                        console.log("新建房屋的影响行数：" + result);
+                        alert("新建成功，开始您的设计吧！");
+                        parent.location.reload();
+
+                    }
+                    else {
+                        alert("添加失败，请重试！");
+                        parent.location.reload();
+
+                    }
+                }
+            });
+
+
+        })
+
+    </script>
+</body>
+</html>

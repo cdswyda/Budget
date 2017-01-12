@@ -1,0 +1,260 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>添加一个房间</title>
+    <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+    <script src="js/jquery-2.2.3.min.js"></script>
+    <script src="bootstrap/js/bootstrap.min.js"></script>
+</head>
+<body>
+
+    <form class="form-horizontal" role="form">
+        <div class="form-group has-feedback">
+            <label for="roomName" class="col-sm-2 control-label">房间名称</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" id="roomName" placeholder="请输入房间名称">
+                <span id="roomName-sp" class="glyphicon form-control-feedback"></span>
+            </div>
+
+        </div>
+
+        <div class="form-group has-feedback">
+            <label for="length" class="col-sm-2 control-label">长度</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" id="length" placeholder="请输入房间长度">
+                <span id="length-sp" class="glyphicon form-control-feedback"></span>
+            </div>
+        </div>
+
+        <div class="form-group has-feedback">
+            <label for="width" class="col-sm-2 control-label">宽度</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" id="width" placeholder="请输入房间宽度">
+                <span id="width-sp" class="glyphicon form-control-feedback"></span>
+            </div>
+        </div>
+
+        <div class="form-group has-feedback">
+            <label for="doorArea" class="col-sm-2 control-label">门面积</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" id="doorArea" placeholder="请输入门的面积">
+                <span id="doorArea-sp" class="glyphicon form-control-feedback"></span>
+            </div>
+        </div>
+
+        <div class="form-group has-feedback">
+            <label for="windowArea" class="col-sm-2 control-label">窗面积</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" id="windowArea" placeholder="请输入窗户的面积">
+                <span id="windowArea-sp" class="glyphicon form-control-feedback"></span>
+            </div>
+        </div>
+
+
+        <div class="form-group">
+            <label class="col-sm-2 control-label"></label>
+            <div class="checkbox col-sm-10">
+                <label class="checkbox">
+                    <input id="checkbox" type="checkbox" />
+                    我都填好了
+                </label>
+            </div>
+        </div>
+
+
+        <div class="col-sm-2"></div>
+
+        <div class="col-sm-8 text-center">
+            <button class="btn btn-primary" id="ok" type="submit" disabled="disabled">提交</button>
+            
+            <button class="btn btn-primary" id="cancel" type="reset">重置</button>
+        </div>
+        <div class="col-sm-2 text-right"></div>
+        <br />
+        <br />
+        <!--<a id="test1" onclick="">刷新父窗体</a>-->
+    </form>
+    <script>
+        $("#test1").click(function () {
+            parent.location.reload();
+        });
+        function refer() {
+            parent.location.reload();
+
+        }
+        //获取地址栏的参数
+        function GetQueryString(name) {
+            var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
+            var r = window.location.search.substr(1).match(reg);
+            if (r != null) return unescape(r[2]); return null;
+        }
+
+
+
+        //验证
+        var mes = "";
+        var ok1, ok2, ok3, ok4, ok5;
+        //roomName
+        $("#roomName").blur(function () {
+            //alert($("#name").val());
+            var mes1;
+            if ($("#roomName").val() == "") {
+                $("#roomName").parent().parent().addClass("has-error");
+                $("#roomName-sp").addClass("glyphicon-remove");
+                //$("#ok").attr("disabled", "disabled");
+                mes1 = "必须输入房间名称";
+                ok1 = false;
+
+            } else {
+                $("#roomName").parent().parent().removeClass("has-error").addClass("has-success");
+                $("#roomName-sp").removeClass("glyphicon-remove").addClass("glyphicon-ok");
+                //$("#ok").attr("disabled", "disabled");
+                mes1 = "";
+                ok1 = true;
+            }
+            //alert($("#name").val());
+            mes += mes1;
+        });
+        //长度
+        $("#length").blur(function () {
+            var mes1;
+            //alert($("#area").val());
+            var reg = /^([0-9])(\.\d{1,4})?$/;
+            //alert(reg.test($("#area").val()));
+            if ($("#length").val() == "" || !reg.test($("#length").val())) {
+                $("#length").parent().parent().addClass("has-error");
+                $("#length-sp").addClass("glyphicon-remove");
+                mes1 = "必须输入正确的长度";
+                ok2 = false;
+
+            } else {
+                $("#length").parent().parent().removeClass("has-error").addClass("has-success");
+                $("#length-sp").removeClass("glyphicon-remove").addClass("glyphicon-ok");
+                mes1 = "";
+                ok2 = true;
+            }
+            mes += mes1;
+        });
+        //宽度
+        $("#width").blur(function () {
+            var mes1;
+            //alert($("#area").val());
+            var reg = /^([0-9])(\.\d{1,4})?$/;
+            //alert(reg.test($("#area").val()));
+            if ($("#width").val() == "" || !reg.test($("#width").val())) {
+                $("#width").parent().parent().addClass("has-error");
+                $("#width-sp").addClass("glyphicon-remove");
+                mes1 = "必须输入正确的宽度";
+                ok3 = false;
+
+            } else {
+                $("#width").parent().parent().removeClass("has-error").addClass("has-success");
+                $("#width-sp").removeClass("glyphicon-remove").addClass("glyphicon-ok");
+                mes1 = "";
+                ok3 = true;
+            }
+            mes += mes1;
+        });
+        //门面积
+        $("#doorArea").blur(function () {
+            var mes1;
+            //alert($("#area").val());
+            var reg = /^([1-3]\d{0,5}|0)(\.\d{1,4})?$/;
+            //alert(reg.test($("#area").val()));
+            if ($("#doorArea").val() == "" || !reg.test($("#doorArea").val())) {
+                $("#doorArea").parent().parent().addClass("has-error");
+                $("#doorArea-sp").addClass("glyphicon-remove");
+                mes1 = "必须输入正确的面积";
+                ok4 = false;
+
+            } else {
+                $("#doorArea").parent().parent().removeClass("has-error").addClass("has-success");
+                $("#doorArea-sp").removeClass("glyphicon-remove").addClass("glyphicon-ok");
+                mes1 = "";
+                ok4 = true;
+            }
+            mes += mes1;
+        });
+        //窗面积
+        $("#windowArea").blur(function () {
+            var mes1;
+            //alert($("#area").val());
+            var reg = /^([1-3]\d{0,5}|0)(\.\d{1,4})?$/;
+            //alert(reg.test($("#area").val()));
+            if ($("#windowArea").val() == "" || !reg.test($("#windowArea").val())) {
+                $("#windowArea").parent().parent().addClass("has-error");
+                $("#windowArea-sp").addClass("glyphicon-remove");
+                mes1 = "必须输入正确的面积";
+                ok5 = false;
+
+            } else {
+                $("#windowArea").parent().parent().removeClass("has-error").addClass("has-success");
+                $("#windowArea-sp").removeClass("glyphicon-remove").addClass("glyphicon-ok");
+                mes1 = "";
+                ok5 = true;
+            }
+            mes += mes1;
+        });
+
+
+        $("#checkbox").click(function () {
+
+            //alert($("#checkbox").prop("checked"));
+            if ($("#checkbox").prop("checked") == true) {
+                if (ok1 && ok2 && ok3 & ok4 & ok5) {
+                    $("#ok").removeAttr("disabled");
+                }
+            }
+        });
+
+        //提交
+        $("#ok").click(function () {
+            //获取传递过来的房屋id
+            var HouseID = GetQueryString("HouseID");
+            var RoomName = $("#roomName").val();
+            var Length = $("#length").val();
+            var Width = $("#width").val();
+            var DoorArea = $("#doorArea").val();
+            var WindowArea = $("#windowArea").val();
+            //房屋数据
+            var postdata = {
+                "HouseID": HouseID,
+                "RoomName": RoomName,
+                "Length": Length,
+                "Width": Width,
+                "DoorArea": DoorArea,
+                "WindowArea": WindowArea
+            };
+            //发送请求到后台提交
+            $.ajax({
+                url: "ashx/CreateRoom.aspx",
+                type: "POST",
+                data: postdata,
+                cache: false,
+                async: false,
+                success: function (result) {
+
+                    if (result > 0) {
+                        //parent.alert("新建成功，开始您的设计吧！");
+                        alert("新建成功，开始您的设计吧！22");
+
+                        //location.href = "DesignerMain.aspx";
+                        parent.location.reload();
+
+                    }
+                    else {
+                        alert("添加失败，请重试！");
+                        parent.location.reload();
+
+                    }
+                }
+            });
+
+
+        })
+
+    </script>
+
+</body>
+</html>
