@@ -2,9 +2,9 @@
 
 工作后再来看，其实做的很low，但是目前工作基本不做C#和.NET了，也基本没时间有优化完善。有同学问我要代码，自己也找了好久才找到（之前很多代码都丢了），所以就放在这里做备份了。
 
-- [GitHub : (https://github.com/cdswyda/Budget)](https://github.com/cdswyda/Budget)
+- **GitHub** : [https://github.com/cdswyda/Budget](https://github.com/cdswyda/Budget)
 
-- [Coding : (https://coding.net/u/cdswyda/p/Budget/git)](https://coding.net/u/cdswyda/p/Budget/git)
+- **Coding** : [https://coding.net/u/cdswyda/p/Budget/git](https://coding.net/u/cdswyda/p/Budget/git)
 
 ## 结构
 
@@ -12,7 +12,7 @@
 
 - `Released` 目录为编译后的文件
 
-- `_images` 几张图，预览的
+- `_images` 几张图，预览的，项目无关。
 
 - 下面的都是源码 
 
